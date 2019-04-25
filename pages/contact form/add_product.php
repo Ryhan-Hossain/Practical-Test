@@ -120,7 +120,7 @@
 
          <div class="form-group">
             <label>Prouct Image</label>
-            <input type="file" name="pro_image" accept="image/*" id="camera" required="required">
+            <input type="file" name="pro_image" accept="image/*" id="image" required="required">
          </div>
 
          <div class="form-group">
@@ -147,32 +147,43 @@
     
 
 </div>
-
+    
     <?php
+
         if(isset($_POST["submit"])){
-        $hostname='localhost';
-        $username='root';
-        $password='';
 
-        try {
-        $dbh = new PDO("mysql:host=$hostname;dbname=test",$username,$password);
+            $hostname='localhost';
+            $username='root';
+            $password='';
 
-        $dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION); // <== add this line
-        $sql = "INSERT INTO product (product_name, product_type, product_brand, product_price, Product_ram, product_storage, Product_camera, product_image, Product_quantity, Product_status)
-        VALUES ('".$_POST["pro_name"]."','".$_POST["pro_type"]."','".$_POST["pro_brand"]."','".$_POST["pro_price"]."','".$_POST["pro_ram"]."','".$_POST["pro_storage"]."','".$_POST["pro_camera"]."','".$_POST["pro_image"]."','".$_POST["pro_qty"]."','".$_POST["pro_status"]."')";
-        if ($dbh->query($sql)) {
-        echo "<script type= 'text/javascript'>alert('Data Uploaded Successfully');</script>";
-        }
-        else{
-        echo "<script type= 'text/javascript'>alert('Data Upload unsuccessful.');</script>";
-        }
 
-        $dbh = null;
-        }
-        catch(PDOException $e)
-        {
-        echo $e->getMessage();
-        }
+            $target_path = "../../image/"; 
+            $target_path = $target_path.basename( $_FILES['pro_image']['name']); 
+             
+            if(move_uploaded_file($_FILES['pro_image']['tmp_name'], $target_path)) { 
+             echo "<script type= 'text/javascript'>alert('Image Uploaded Successfully');</script>"; 
+            } else{ 
+             echo "<script type= 'text/javascript'>alert('Image Upload unsuccessful.');</script>"; 
+            }
+            try {
+            $dbh = new PDO("mysql:host=$hostname;dbname=test",$username,$password);
+
+            $dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION); // <== add this line
+            $sql = "INSERT INTO product (product_name, product_type, product_brand, product_price, Product_ram, product_storage, Product_camera, product_image, Product_quantity, Product_status)
+            VALUES ('".$_POST["pro_name"]."','".$_POST["pro_type"]."','".$_POST["pro_brand"]."','".$_POST["pro_price"]."','".$_POST["pro_ram"]."','".$_POST["pro_storage"]."','".$_POST["pro_camera"]."','".$_POST["pro_image"]."','".$_POST["pro_qty"]."','".$_POST["pro_status"]."')";
+            if ($dbh->query($sql)) {
+            echo "<script type= 'text/javascript'>alert('Data Uploaded Successfully');</script>";
+            }
+            else{
+            echo "<script type= 'text/javascript'>alert('Data Upload unsuccessful.');</script>";
+            }
+
+            $dbh = null;
+            }
+            catch(PDOException $e)
+            {
+            echo $e->getMessage();
+            }
 
         }
     ?>
