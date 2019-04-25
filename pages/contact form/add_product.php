@@ -55,7 +55,33 @@
     <h1>Add Product</h1>
     <hr>
 
-   
+         <div class="form-group">
+            <label>Prouct Type</label>
+                
+                <div>
+                    <select onchange="elements(this,I,Ex)" name="pro_type">
+                        <option value="0">Select Option</option>
+                        <option value="1">Touch Screen</option> 
+                        <option value="2">Others</option>
+                    </select>
+                
+                    <select id="I" style="display:none;" name="pro_type">
+                        <option value="0">Select Option</option>
+                        <option value="Android">Android</option>
+                        <option value="IOS">iOS</option>
+                    </select>
+                
+
+                    <select id="Ex" style="display:none;" name="pro_type">
+                        <option value="0">Select Option</option>
+                        <option value="Symbian">Symbian</option>
+                        <option value="Java">Java</option>
+                    </select>
+                
+                </div>
+                
+            
+         </div>
        
 
        <div class="col-md-6">
@@ -65,33 +91,7 @@
             <input type="text" name="pro_name" id="name" required="required" placeholder="Product Name" class="form-control">
          </div>
 
-         <div class="form-group">
-            <label>Prouct Type</label>
-                
-                <div>
-                    <select onchange="elements(this,I,Ex)" name="Elements">
-                        <option value="0">Select Option</option>
-                        <option value="1">Touch Screen</option> 
-                        <option value="2">Others</option>
-                    </select>
-                
-                    <select id="I" style="display:none;" name="Touch Screen">
-                        <option value="0">Select Option</option>
-                        <option value="1">Android</option>
-                        <option value="2">iOS</option>
-                    </select>
-                
 
-                    <select id="Ex" style="display:none;" name="Others">
-                        <option value="0">Select Option</option>
-                        <option value="1">Symbian</option>
-                        <option value="2">Java</option>
-                    </select>
-                
-                </div>
-                
-            
-         </div>
 
          <div class="form-group">
             <label>Product Brand</label>
@@ -120,7 +120,7 @@
 
          <div class="form-group">
             <label>Prouct Image</label>
-            <input type="file" name="pic" accept="image/*" id="camera" required="required">
+            <input type="file" name="pro_image" accept="image/*" id="camera" required="required">
          </div>
 
          <div class="form-group">
@@ -131,7 +131,7 @@
          <div class="form-group">
             <label>Prouct Status</label>
             <div>
-                <select>
+                <select name="pro_status">
                     <option value="0">Inactive</option>
                     <option value="1">Active</option>
                 </select>
@@ -139,7 +139,7 @@
          </div>
 
          <div class="form-group">
-            <input type="submit" value="Upload" name="submit" class="btn btn-primary btn-block"
+            <input type="submit" value="Upload" name="submit" class="btn btn-primary btn-block">
          </div>
         </form>
        </div>
@@ -159,7 +159,7 @@
 
         $dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION); // <== add this line
         $sql = "INSERT INTO product (product_name, product_type, product_brand, product_price, Product_ram, product_storage, Product_camera, product_image, Product_quantity, Product_status)
-        VALUES ('".$_POST["pro_name"]."','".$_POST["per_email"]."','".$_POST["per_msg"]."')";
+        VALUES ('".$_POST["pro_name"]."','".$_POST["pro_type"]."','".$_POST["pro_brand"]."','".$_POST["pro_price"]."','".$_POST["pro_ram"]."','".$_POST["pro_storage"]."','".$_POST["pro_camera"]."','".$_POST["pro_image"]."','".$_POST["pro_qty"]."','".$_POST["pro_status"]."')";
         if ($dbh->query($sql)) {
         echo "<script type= 'text/javascript'>alert('Message Sent Successfully');</script>";
         }
