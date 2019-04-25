@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 25, 2019 at 07:56 AM
+-- Generation Time: Apr 25, 2019 at 01:50 PM
 -- Server version: 10.1.34-MariaDB
 -- PHP Version: 7.2.8
 
@@ -21,6 +21,30 @@ SET time_zone = "+00:00";
 --
 -- Database: `test`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `message`
+--
+
+CREATE TABLE `message` (
+  `sl_no` int(11) NOT NULL,
+  `name` varchar(20) NOT NULL,
+  `email` varchar(20) NOT NULL,
+  `message` varchar(150) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `message`
+--
+
+INSERT INTO `message` (`sl_no`, `name`, `email`, `message`) VALUES
+(1, 'example', 'example@example.com', 'example'),
+(2, 'test', 'test@gmail.com', 'test.....'),
+(3, 'test2', 'test2@test.com', 'test2....'),
+(4, 'message test', 'test@test.com', 'this is a long message'),
+(8, 'ryhan', 'ryhan@mail.com', 'this is a test message');
 
 -- --------------------------------------------------------
 
@@ -77,6 +101,12 @@ INSERT INTO `product` (`product_id`, `product_name`, `product_type`, `product_br
 --
 
 --
+-- Indexes for table `message`
+--
+ALTER TABLE `message`
+  ADD PRIMARY KEY (`sl_no`);
+
+--
 -- Indexes for table `product`
 --
 ALTER TABLE `product`
@@ -87,10 +117,16 @@ ALTER TABLE `product`
 --
 
 --
+-- AUTO_INCREMENT for table `message`
+--
+ALTER TABLE `message`
+  MODIFY `sl_no` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+
+--
 -- AUTO_INCREMENT for table `product`
 --
 ALTER TABLE `product`
-  MODIFY `product_id` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `product_id` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

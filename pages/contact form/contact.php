@@ -71,25 +71,26 @@
 	   </div>
 
        <div class="col-md-6">
-       	
+       	<form action="" method="post">
          <div class="form-group">
          	<label>Name</label>
-         	<input type="text" class="form-control">
+         	<input type="text" name="per_name" id="name" required="required" placeholder="Sender Name" class="form-control">
          </div>
 
          <div class="form-group">
          	<label>Email</label>
-         	<input type="text" class="form-control">
+         	<input type="email" name="per_email" id="email" required="required" placeholder="Sender Email Address" class="form-control">
          </div>
 
          <div class="form-group">
          	<label>Massage</label>
-         	<textarea  class="form-control" rows="7"></textarea>
+         	<textarea type="text" name="per_msg" id="message" required="required" placeholder="Message" class="form-control" rows="7"></textarea>
          </div>
 
          <div class="form-group">
-         	<button class="btn btn-primary btn-block">Send</button>
+         	<input type="submit" value="Send" name="submit" class="btn btn-primary btn-block">
          </div>
+       </form>
 
        </div>
 
@@ -97,8 +98,34 @@
 
 </div>
 
+  <?php
+    if(isset($_POST["submit"])){
+    $hostname='localhost';
+    $username='root';
+    $password='';
 
+    try {
+    $dbh = new PDO("mysql:host=$hostname;dbname=test",$username,$password);
 
+    $dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION); // <== add this line
+    $sql = "INSERT INTO message (name, email, message)
+    VALUES ('".$_POST["per_name"]."','".$_POST["per_email"]."','".$_POST["per_msg"]."')";
+    if ($dbh->query($sql)) {
+    echo "<script type= 'text/javascript'>alert('Message Sent Successfully');</script>";
+    }
+    else{
+    echo "<script type= 'text/javascript'>alert('Message sent unsuccessful.');</script>";
+    }
+
+    $dbh = null;
+    }
+    catch(PDOException $e)
+    {
+    echo $e->getMessage();
+    }
+
+    }
+  ?>
 
 </body>
 </html>

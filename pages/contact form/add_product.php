@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <title></title>
     <link rel="stylesheet" href="css/bootstrap.min.css">
-   <style>
+    <style>
         body{
             background-image: url(image/back.jpg);
             background-size:cover;
@@ -25,36 +25,28 @@
         height: 300px;  /* The height is 400 pixels */
         width: 100%;  /* The width is the width of the web page */
        }
-   </style>
+    </style>
 
-   <script>
-            function elements(el,i,ex){
-                switch(el.value){
-                    case '1':
-                        i.style.display='block';
-                        ex.style.display='none';
-                        en.style.display='none';
-                        break;
-                    case '2':
-                        i.style.display='none';
-                        ex.style.display='block';
-                        en.style.display='none';
-                        break;
-                    case '3':
-                        i.style.display='none';
-                        ex.style.display='none';
-                        en.style.display='block';
-                        break;
-                    default:
-                        i.style.display='none';
-                        ex.style.display='none';
-                        en.style.display='none';
-                        break;
-                }
+    <script>
+        function elements(el,i,ex){
+            switch(el.value){
+                case '1':
+                    i.style.display='block';
+                    ex.style.display='none';
+                    break;
+                case '2':
+                    i.style.display='none';
+                    ex.style.display='block';
+                    break;
+                default:
+                    i.style.display='none';
+                    ex.style.display='none';
+                    break;
             }
-        </script>
+        }
+    </script>
 
-  </head>
+</head>
 <body>
     
 
@@ -67,10 +59,10 @@
        
 
        <div class="col-md-6">
-        
+        <form action="" method="post">
          <div class="form-group">
             <label>Product Name</label>
-            <input type="text" class="form-control">
+            <input type="text" name="pro_name" id="name" required="required" placeholder="Product Name" class="form-control">
          </div>
 
          <div class="form-group">
@@ -103,37 +95,37 @@
 
          <div class="form-group">
             <label>Product Brand</label>
-            <input type="text" class="form-control">
+            <input type="text" name="pro_brand" id="brand" required="required" placeholder="Product Brand" class="form-control">
          </div>
 
          <div class="form-group">
             <label>Prouct Price</label>
-            <input type="text" class="form-control">
+            <input type="number" name="pro_price" id="price" required="required" placeholder="Product Price" class="form-control">
          </div>
 
          <div class="form-group">
             <label>Prouct Ram (GB)</label>
-            <input type="text" class="form-control">
+            <input type="text" name="pro_ram" id="ram" required="required" placeholder="Product Ram" class="form-control">
          </div>
 
          <div class="form-group">
             <label>Prouct Storage (GB)</label>
-            <input type="text" class="form-control">
+            <input type="text" name="pro_storage" id="storage" required="required" placeholder="Product Storage" class="form-control">
          </div>
 
          <div class="form-group">
             <label>Prouct Camera</label>
-            <input type="text" class="form-control">
+            <input type="text" name="pro_camera" id="camera" required="required" placeholder="Product Camera" class="form-control">
          </div>
 
          <div class="form-group">
             <label>Prouct Image</label>
-            <input type="file" name="pic" accept="image/*">
+            <input type="file" name="pic" accept="image/*" id="camera" required="required">
          </div>
 
          <div class="form-group">
             <label>Prouct Quantity</label>
-            <input type="number" class="form-control">
+            <input type="number" name="pro_qty" id="quantity" required="required" placeholder="Product Quantity" class="form-control">
          </div>
 
          <div class="form-group">
@@ -147,16 +139,43 @@
          </div>
 
          <div class="form-group">
-            <button class="btn btn-primary btn-block">Send</button>
+            <input type="submit" value="Upload" name="submit" class="btn btn-primary btn-block"
          </div>
-
+        </form>
        </div>
 
     
 
 </div>
 
+    <?php
+        if(isset($_POST["submit"])){
+        $hostname='localhost';
+        $username='root';
+        $password='';
 
+        try {
+        $dbh = new PDO("mysql:host=$hostname;dbname=test",$username,$password);
+
+        $dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION); // <== add this line
+        $sql = "INSERT INTO product (product_name, product_type, product_brand, product_price, Product_ram, product_storage, Product_camera, product_image, Product_quantity, Product_status)
+        VALUES ('".$_POST["pro_name"]."','".$_POST["per_email"]."','".$_POST["per_msg"]."')";
+        if ($dbh->query($sql)) {
+        echo "<script type= 'text/javascript'>alert('Message Sent Successfully');</script>";
+        }
+        else{
+        echo "<script type= 'text/javascript'>alert('Message sent unsuccessful.');</script>";
+        }
+
+        $dbh = null;
+        }
+        catch(PDOException $e)
+        {
+        echo $e->getMessage();
+        }
+
+        }
+    ?>
 
 
 </body>
