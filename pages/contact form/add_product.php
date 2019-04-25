@@ -161,10 +161,10 @@
         $sql = "INSERT INTO product (product_name, product_type, product_brand, product_price, Product_ram, product_storage, Product_camera, product_image, Product_quantity, Product_status)
         VALUES ('".$_POST["pro_name"]."','".$_POST["pro_type"]."','".$_POST["pro_brand"]."','".$_POST["pro_price"]."','".$_POST["pro_ram"]."','".$_POST["pro_storage"]."','".$_POST["pro_camera"]."','".$_POST["pro_image"]."','".$_POST["pro_qty"]."','".$_POST["pro_status"]."')";
         if ($dbh->query($sql)) {
-        echo "<script type= 'text/javascript'>alert('Message Sent Successfully');</script>";
+        echo "<script type= 'text/javascript'>alert('Data Uploaded Successfully');</script>";
         }
         else{
-        echo "<script type= 'text/javascript'>alert('Message sent unsuccessful.');</script>";
+        echo "<script type= 'text/javascript'>alert('Data Upload unsuccessful.');</script>";
         }
 
         $dbh = null;
