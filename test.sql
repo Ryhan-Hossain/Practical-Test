@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 25, 2019 at 01:50 PM
+-- Generation Time: Apr 25, 2019 at 05:39 PM
 -- Server version: 10.1.34-MariaDB
 -- PHP Version: 7.2.8
 
@@ -43,8 +43,7 @@ INSERT INTO `message` (`sl_no`, `name`, `email`, `message`) VALUES
 (1, 'example', 'example@example.com', 'example'),
 (2, 'test', 'test@gmail.com', 'test.....'),
 (3, 'test2', 'test2@test.com', 'test2....'),
-(4, 'message test', 'test@test.com', 'this is a long message'),
-(8, 'ryhan', 'ryhan@mail.com', 'this is a test message');
+(4, 'message test', 'test@test.com', 'this is a long message');
 
 -- --------------------------------------------------------
 
@@ -120,7 +119,7 @@ ALTER TABLE `product`
 -- AUTO_INCREMENT for table `message`
 --
 ALTER TABLE `message`
-  MODIFY `sl_no` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `sl_no` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `product`
